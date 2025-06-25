@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Quality Settings – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .setting-item {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #444;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Media Quality</h2>
+
+    <div class="setting-item">
+      <label for="stream-quality">Streaming Quality</label>
+      <select id="stream-quality">
+        <option value="auto" selected>Auto (recommended)</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label for="download-quality">Download Quality</label>
+      <select id="download-quality">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label for="lyrics-sync">Lyrics Sync Quality</label>
+      <select id="lyrics-sync">
+        <option value="basic">Basic (line-by-line)</option>
+        <option value="enhanced" selected>Enhanced (karaoke-style)</option>
+      </select>
+    </div>
+  </div>
+</body>
+</html>

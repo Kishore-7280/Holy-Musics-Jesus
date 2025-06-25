@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playback Settings – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .setting-item {
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    label {
+      font-weight: 500;
+      color: #444;
+    }
+
+    select, input[type="range"] {
+      width: 60%;
+      padding: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Playback Settings</h2>
+
+    <div class="setting-item">
+      <label for="autoplay">Autoplay Next Song</label>
+      <input type="checkbox" id="autoplay" checked>
+    </div>
+
+    <div class="setting-item">
+      <label for="crossfade">Enable Crossfade</label>
+      <input type="checkbox" id="crossfade">
+    </div>
+
+    <div class="setting-item">
+      <label for="crossfade-length">Crossfade Duration (sec)</label>
+      <input type="range" id="crossfade-length" min="0" max="10" value="4">
+    </div>
+
+    <div class="setting-item">
+      <label for="repeat-mode">Repeat Mode</label>
+      <select id="repeat-mode">
+        <option value="none">None</option>
+        <option value="one">Repeat One</option>
+        <option value="all" selected>Repeat All</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label for="playback-speed">Playback Speed</label>
+      <select id="playback-speed">
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x (Normal)</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+      </select>
+    </div>
+  </div>
+</body>
+</html>

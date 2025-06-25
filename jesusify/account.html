@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .setting-item {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #9c6644;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7d4f34;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Account Settings</h2>
+
+    <form id="accountForm">
+      <div class="setting-item">
+        <label for="username">Username</label>
+        <input type="text" id="username" value="jesus_follower" />
+      </div>
+
+      <div class="setting-item">
+        <label for="email">Email</label>
+        <input type="email" id="email" value="you@example.com" />
+      </div>
+
+      <div class="setting-item">
+        <label for="current-password">Current Password</label>
+        <input type="password" id="current-password" />
+      </div>
+
+      <div class="setting-item">
+        <label for="new-password">New Password</label>
+        <input type="password" id="new-password" />
+      </div>
+
+      <button type="submit">Update Account</button>
+    </form>
+  </div>
+</body>
+</html>

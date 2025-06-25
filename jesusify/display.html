@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Settings – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .setting-item {
+      margin-bottom: 1.4rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+
+    select, input[type="checkbox"] {
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Display Settings</h2>
+
+    <div class="setting-item">
+      <label for="theme">Theme</label>
+      <select id="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="auto" selected>Auto</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label for="font-size">Font Size</label>
+      <select id="font-size">
+        <option value="small">Small</option>
+        <option value="medium" selected>Medium</option>
+        <option value="large">Large</option>
+      </select>
+    </div>
+
+    <div class="setting-item toggle-row">
+      <label for="lyrics-mode">Karaoke Lyrics Mode</label>
+      <input type="checkbox" id="lyrics-mode">
+    </div>
+
+    <div class="setting-item toggle-row">
+      <label for="animations">Enable Animations</label>
+      <input type="checkbox" id="animations" checked>
+    </div>
+  </div>
+</body>
+</html>

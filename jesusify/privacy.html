@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Settings – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .setting-item {
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    label {
+      font-weight: 500;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Privacy & Social Settings</h2>
+
+    <div class="setting-item">
+      <label for="private-listening">Enable Private Listening</label>
+      <input type="checkbox" id="private-listening">
+    </div>
+
+    <div class="setting-item">
+      <label for="public-playlists">Make My Playlists Public</label>
+      <input type="checkbox" id="public-playlists" checked>
+    </div>
+
+    <div class="setting-item">
+      <label for="share-activity">Share Activity with Friends</label>
+      <input type="checkbox" id="share-activity">
+    </div>
+
+    <div class="setting-item">
+      <label for="allow-mentions">Allow Mentions in Comments</label>
+      <input type="checkbox" id="allow-mentions">
+    </div>
+
+    <div class="setting-item">
+      <label for="email-visibility">Show Email on Profile</label>
+      <input type="checkbox" id="email-visibility">
+    </div>
+  </div>
+</body>
+</html>

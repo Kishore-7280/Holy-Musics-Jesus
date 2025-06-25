@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Saving & Offline – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .setting-item {
+      margin-bottom: 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    label {
+      font-weight: 500;
+      color: #444;
+    }
+
+    select, input[type="checkbox"] {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Data Saving & Offline Settings</h2>
+
+    <div class="setting-item">
+      <label for="data-saver">Enable Data Saver</label>
+      <input type="checkbox" id="data-saver">
+    </div>
+
+    <div class="setting-item">
+      <label for="download-quality">Download Quality</label>
+      <select id="download-quality">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label for="offline-mode">Offline Mode</label>
+      <input type="checkbox" id="offline-mode" checked>
+    </div>
+
+    <div class="setting-item">
+      <label for="download-over-wifi">Download over Wi-Fi only</label>
+      <input type="checkbox" id="download-over-wifi" checked>
+    </div>
+  </div>
+</body>
+</html>

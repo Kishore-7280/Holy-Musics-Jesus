@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apps & Devices – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      text-align: center;
+      color: #5e6472;
+      margin-bottom: 2rem;
+    }
+
+    .device-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .device-item {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .device-item span {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .remove-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <h2>Apps & Devices</h2>
+    <ul class="device-list">
+      <li class="device-item">
+        <span>iPhone 14 (Last seen: Today)</span>
+        <button class="remove-btn">Remove</button>
+      </li>
+      <li class="device-item">
+        <span>Web Browser - Chrome (Last seen: Yesterday)</span>
+        <button class="remove-btn">Remove</button>
+      </li>
+      <li class="device-item">
+        <span>Android Tablet (Last seen: 2 days ago)</span>
+        <button class="remove-btn">Remove</button>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

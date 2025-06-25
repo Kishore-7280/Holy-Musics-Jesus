@@ -1,123 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings – Jesusify</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f8f9fa;
-      padding: 2rem;
-      color: #2b2d42;
+      margin: 0;
+      padding: 0;
     }
 
     .settings-container {
       max-width: 700px;
-      margin: auto;
-      background-color: #ffffff;
-      border-radius: 16px;
+      margin: 3rem auto;
+      background: #fff;
       padding: 2rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     }
 
     h2 {
+      text-align: center;
+      margin-bottom: 2rem;
       color: #5e6472;
+    }
+
+    ul.settings-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.settings-list li {
       margin-bottom: 1rem;
     }
 
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-
-    .form-group label {
+    ul.settings-list a {
       display: block;
-      margin-bottom: 0.4rem;
+      padding: 1rem;
+      background-color: #f1f3f5;
+      border-radius: 12px;
+      text-decoration: none;
       font-weight: 500;
-      color: #444;
+      color: #333;
+      transition: background 0.3s ease;
     }
 
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 0.6rem 0.9rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: #9c6644;
-    }
-
-    .save-btn {
-      background-color: #9c6644;
-      color: #fff;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .save-btn:hover {
-      background-color: #7d4f34;
-    }
-
-    @media (max-width: 600px) {
-      .settings-container {
-        padding: 1.5rem;
-      }
+    ul.settings-list a:hover {
+      background-color: #e9ecef;
     }
   </style>
 </head>
 <body>
-
   <div class="settings-container">
-    <h2>Account Settings</h2>
-    <div class="section">
-      <div class="form-group">
-        <label for="username">Full Name</label>
-        <input type="text" id="username" value="John David" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" value="john@example.com" />
-      </div>
-      <div class="form-group">
-        <label for="password">Change Password</label>
-        <input type="password" id="password" placeholder="Enter new password" />
-      </div>
-    </div>
-
-    <h2>Privacy Settings</h2>
-    <div class="section">
-      <div class="form-group">
-        <label for="profile-visibility">Profile Visibility</label>
-        <select id="profile-visibility">
-          <option value="public">Public</option>
-          <option value="private" selected>Private</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="activity-status">Show Activity Status</label>
-        <select id="activity-status">
-          <option value="yes">Yes</option>
-          <option value="no" selected>No</option>
-        </select>
-      </div>
-    </div>
-
-    <button class="save-btn">Save Changes</button>
+    <h2>Settings</h2>
+    <ul class="settings-list">
+      <li><a href="account.html">Account</a></li>
+      <li><a href="display.html">Content & Display</a></li>
+      <li><a href="playback.html">Playback</a></li>
+      <li><a href="privacy.html">Privacy & Social</a></li>
+      <li><a href="notifications.html">Notifications</a></li>
+      <li><a href="devices.html">Apps & Devices</a></li>
+      <li><a href="data.html">Data Saving & Offline</a></li>
+      <li><a href="quality.html">Media Quality</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
   </div>
-
 </body>
 </html>
