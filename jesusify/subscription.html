@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subscribe – Jesusify</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script defer src="Script/sub.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fcf8f3;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #9c6644;
+    }
+
+    .toggle {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .plan {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .plan h2 {
+      color: #9c6644;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features li {
+      margin: 0.5rem 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #9c6644;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .button[disabled] {
+      background: gray;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Choose Your Plan</h1>
+
+    <div class="toggle">
+      <label>
+        <input type="checkbox" id="billingToggle" />
+        <strong>Yearly Billing (Save 20%)</strong>
+      </label>
+    </div>
+
+    <div class="plans" id="planContainer">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <script>
+    const plans = {
+      worshipper: {
+        monthly: { price: "$4.99", stripeId: "price_worshipper_monthly" },
+        yearly: { price: "$49.99", stripeId: "price_worshipper_yearly" }
+      },
+      disciple: {
+        monthly: { price: "$9.99", stripeId: "price_disciple_monthly" },
+        yearly: { price: "$99.99", stripeId: "price_disciple_yearly" }
+      }
+    };
+
+    let userPlan = null;
+    let yearly = false;
+
+    async function fetchUserPlan() {
+      const res = await fetch('/api/me');
+      const user = await res.json();
+      userPlan = user.subscription; // 'free' | 'worshipper' | 'disciple'
+    }
+
+    function renderPlans() {
+      const container = document.getElementById("planContainer");
+      container.innerHTML = "";
+
+      for (const [key, data] of Object.entries(plans)) {
+        const plan = data[yearly ? "yearly" : "monthly"];
+        const div = document.createElement("div");
+        div.className = "plan";
+        div.innerHTML = `
+          <h2>${key.charAt(0).toUpperCase() + key.slice(1)}</h2>
+          <p class="price">${plan.price} / ${yearly ? "year" : "month"}</p>
+          <ul class="features">
+            <li>${key === 'disciple' ? 'Early access' : 'Ad-free listening'}</li>
+            <li>${key === 'disciple' ? 'Podcast devotionals' : 'Unlimited skips'}</li>
+            <li>Lyrics sync</li>
+            <li>Offline mode</li>
+          </ul>
+          <button class="button" data-plan="${key}" data-stripe="${plan.stripeId}">${
+          userPlan === key ? "Current Plan" : "Subscribe"
+        }</button>
+        `;
+        const btn = div.querySelector("button");
+        if (userPlan === key) btn.disabled = true;
+
+        btn.addEventListener("click", () => {
+          const stripeId = btn.dataset.stripe;
+          fetch("/api/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ priceId: stripeId })
+          })
+            .then(res => res.json())
+            .then(data => window.location.href = data.url);
+        });
+
+        container.appendChild(div);
+      }
+    }
+
+    document.getElementById("billingToggle").addEventListener("change", (e) => {
+      yearly = e.target.checked;
+      renderPlans();
+    });
+
+    // Load user plan + render
+    fetchUserPlan().then(renderPlans);
+  </script>
+
+</body>
+</html>

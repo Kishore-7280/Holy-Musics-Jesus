@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Podcasts – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+      padding: 2rem;
+    }
+
+    .podcast-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .podcast-header h2 {
+      color: #5e6472;
+      font-size: 2rem;
+    }
+
+    .search-bar-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      padding: 0.6rem 1rem;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      width: 60%;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .podcast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .podcast-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .podcast-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .podcast-thumbnail {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .podcast-info h3 {
+      font-size: 1.1rem;
+      color: #2b2d42;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    .podcast-info p {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    .podcast-player {
+      width: 100%;
+    }
+
+    audio {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .duration {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.8rem;
+    }
+
+    .save-btn {
+      background-color: #e0c097;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      color: #2b2d42;
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background-color: #d6b688;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="podcast-header">
+    <h2>Inspirational Podcasts</h2>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar-container">
+    <input type="text" class="search-bar" id="podcastSearch" placeholder="Search podcasts by title or speaker...">
+  </div>
+
+  <div class="podcast-grid" id="podcastGrid">
+
+    <!-- Podcast Card Example -->
+    <div class="podcast-card" data-title="Faith Over Fear" data-speaker="Pastor Joel Timothy">
+      <img src="assets/img/podcast1.jpg" class="podcast-thumbnail" alt="Podcast 1">
+      <div class="podcast-info">
+        <h3>Faith Over Fear</h3>
+        <p>Speaker: Pastor Joel Timothy</p>
+      </div>
+      <div class="duration">⏱ 12:34</div>
+      <div class="podcast-player">
+        <audio controls>
+          <source src="assets/audio/podcast1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <button class="save-btn">💾 Save to Library</button>
+    </div>
+
+    <div class="podcast-card" data-title="The Power of Prayer" data-speaker="Sarah Joy">
+      <img src="assets/img/podcast2.jpg" class="podcast-thumbnail" alt="Podcast 2">
+      <div class="podcast-info">
+        <h3>The Power of Prayer</h3>
+        <p>Speaker: Sarah Joy</p>
+      </div>
+      <div class="duration">⏱ 09:20</div>
+      <div class="podcast-player">
+        <audio controls>
+          <source src="assets/audio/podcast2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <button class="save-btn">💾 Save to Library</button>
+    </div>
+
+    <div class="podcast-card" data-title="Walking with Jesus" data-speaker="Brother Mark">
+      <img src="assets/img/podcast3.jpg" class="podcast-thumbnail" alt="Podcast 3">
+      <div class="podcast-info">
+        <h3>Walking with Jesus</h3>
+        <p>Speaker: Brother Mark</p>
+      </div>
+      <div class="duration">⏱ 15:02</div>
+      <div class="podcast-player">
+        <audio controls>
+          <source src="assets/audio/podcast3.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <button class="save-btn">💾 Save to Library</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Live search filter
+    document.getElementById('podcastSearch').addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      const cards = document.querySelectorAll('.podcast-card');
+
+      cards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const speaker = card.dataset.speaker.toLowerCase();
+        const matches = title.includes(query) || speaker.includes(query);
+        card.style.display = matches ? 'flex' : 'none';
+      });
+    });
+
+    // Save to library click handler (localStorage mock)
+    document.querySelectorAll('.save-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        const title = this.closest('.podcast-card').dataset.title;
+        alert(`🎧 "${title}" saved to your library!`);
+        // You can later store it in localStorage or a backend.
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Playlist – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Poppins', sans-serif;
+      padding: 2rem;
+    }
+
+    .creator-container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      color: #5e6472;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .song-selector {
+      margin-top: 1.5rem;
+    }
+
+    .song-selector label {
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .song-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-height: 250px;
+      overflow-y: auto;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fafafa;
+    }
+
+    .song-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .song-item input {
+      margin: 0;
+    }
+
+    .create-btn {
+      margin-top: 2rem;
+      background-color: #9c6644;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .create-btn:hover {
+      background-color: #7d4f34;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="creator-container">
+    <h2>Create a New Playlist</h2>
+    <form>
+      <div class="form-group">
+        <label for="playlist-name">Playlist Name</label>
+        <input type="text" id="playlist-name" placeholder="Morning Devotion" required />
+      </div>
+
+      <div class="form-group">
+        <label for="playlist-desc">Description</label>
+        <textarea id="playlist-desc" placeholder="Spiritual songs to start your day..." required></textarea>
+      </div>
+
+      <div class="song-selector">
+        <label>Select Songs to Add:</label>
+        <div class="song-list">
+          <div class="song-item">
+            <input type="checkbox" id="song1" name="songs" value="song1" />
+            <label for="song1">Hallelujah Praise – John David</label>
+          </div>
+          <div class="song-item">
+            <input type="checkbox" id="song2" name="songs" value="song2" />
+            <label for="song2">Grace Flows – Sarah K.</label>
+          </div>
+          <div class="song-item">
+            <input type="checkbox" id="song3" name="songs" value="song3" />
+            <label for="song3">Jesus My Light – Choir Angels</label>
+          </div>
+          <!-- Add more songs as needed -->
+        </div>
+      </div>
+
+      <button type="submit" class="create-btn">Create Playlist</button>
+    </form>
+  </div>
+
+</body>
+</html>

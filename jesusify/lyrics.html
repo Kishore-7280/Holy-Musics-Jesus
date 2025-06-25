@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karaoke Lyrics – Jesusify</title>
+  <style>
+    :root {
+      --bg-light: #fffefc;
+      --bg-dark: #121212;
+      --text-light: #222;
+      --text-dark: #eee;
+      --highlight: #9c6644;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .title {
+      font-size: 2rem;
+      color: var(--highlight);
+      margin-bottom: 2rem;
+    }
+
+    .lyrics-box {
+      max-height: 500px;
+      overflow-y: auto;
+      margin-bottom: 2rem;
+    }
+
+    .lyric-line {
+      font-size: 1.3rem;
+      margin: 1rem 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lyric-line:hover {
+      opacity: 0.7;
+    }
+
+    .highlighted {
+      font-weight: bold;
+      color: var(--highlight);
+    }
+
+    .timestamp {
+      color: #888;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+
+    mark {
+      background: none;
+      color: #999;
+    }
+
+    mark.active {
+      color: var(--highlight);
+      font-weight: bold;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .toggle-mode {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--highlight);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-mode" onclick="toggleTheme()">🌓 Mode</button>
+
+  <div class="container">
+    <div class="title" id="songTitle">Loading...</div>
+
+    <div class="lyrics-box" id="lyricsBox">Loading lyrics…</div>
+
+    <audio id="audioPlayer" autoplay controls>
+      <source id="audioSource" src="" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const songKey = params.get("song") || "grace";
+
+    const songTitle = document.getElementById("songTitle");
+    const lyricsBox = document.getElementById("lyricsBox");
+    const audio = document.getElementById("audioPlayer");
+    const audioSource = document.getElementById("audioSource");
+
+    let lyrics = [];
+
+    async function fetchLyrics() {
+      try {
+        const res = await fetch(`lyrics/${songKey}.json`);
+        const data = await res.json();
+        songTitle.textContent = data.title;
+        audioSource.src = data.audio;
+        audio.load();
+        audio.play();
+
+        lyrics = data.lyrics;
+
+        renderLyrics();
+        requestAnimationFrame(updateLyrics);
+      } catch (e) {
+        lyricsBox.innerHTML = `<p>Error loading lyrics.</p>`;
+      }
+    }
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${mins}:${secs}`;
+    }
+
+    function renderLyrics() {
+      lyricsBox.innerHTML = "";
+      lyrics.forEach((item, i) => {
+        const div = document.createElement("div");
+        div.className = "lyric-line";
+        div.dataset.time = item.time;
+        div.dataset.index = i;
+
+        const timeTag = document.createElement("span");
+        timeTag.className = "timestamp";
+        timeTag.textContent = `[${formatTime(item.time)}]`;
+
+        div.innerHTML = timeTag.outerHTML + " " + item.line;
+
+        div.addEventListener("click", () => {
+          audio.currentTime = parseFloat(item.time);
+          audio.play();
+        });
+
+        lyricsBox.appendChild(div);
+      });
+    }
+
+    function updateLyrics() {
+      const currentTime = audio.currentTime;
+      const lines = document.querySelectorAll(".lyric-line");
+
+      lines.forEach((line, i) => {
+        const start = parseFloat(line.dataset.time);
+        const next = lines[i + 1] ? parseFloat(lines[i + 1].dataset.time) : Infinity;
+
+        if (currentTime >= start && currentTime < next) {
+          lines.forEach(l => l.classList.remove("highlighted"));
+          line.classList.add("highlighted");
+
+          // Karaoke-style <mark> highlight inside the line
+          const raw = lyrics[i].line;
+          const baseTime = start;
+          let wordIndex = 0;
+
+          const parsed = raw.replace(/<mark>(.*?)<\/mark>/g, (match, word) => {
+            const highlightTime = baseTime + wordIndex * 0.8;
+            const active = currentTime >= highlightTime;
+            wordIndex++;
+            return `<mark class="${active ? 'active' : ''}">${word}</mark>`;
+          });
+
+          line.innerHTML = `<span class="timestamp">[${formatTime(start)}]</span> ${parsed}`;
+          line.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+
+      requestAnimationFrame(updateLyrics);
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    }
+
+    if (localStorage.getItem("darkMode") === "true") {
+      document.body.classList.add("dark-mode");
+    }
+
+    fetchLyrics();
+  </script>
+
+</body>
+</html>

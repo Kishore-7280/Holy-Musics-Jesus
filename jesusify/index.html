@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jesusify – Home</title>
+  <link rel="stylesheet" href="styles/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">🎵 Jesusify</div>
+    <input type="text" placeholder="Search for spiritual songs..." class="search-bar" />
+    <div class="nav-links">
+      <a href="profile.html">Profile</a>
+      <a href="settings.html">Settings</a>
+      <a href="subscription.html">Subscribe</a>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="#">Your Library</a></li>
+      <li><a href="#">Create Playlist</a></li>
+      <li><a href="#">Podcasts</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <h2>Featured Songs</h2>
+    <div class="song-list">
+      <div class="song-card">
+        <img src="assets/img/jesus1.jpg" alt="Song Cover">
+        <div class="song-info">
+          <h3>Hallelujah Praise</h3>
+          <p>Artist: John David</p>
+        </div>
+        <audio controls data-single>
+          <source src="assets/audio/song1.mp3" type="audio/mpeg">
+        </audio>
+        <div class="song-actions">
+          <button class="lyrics-btn">Lyrics</button>
+          <a href="assets/audio/song1.mp3" download>Download</a>
+        </div>
+        <div class="lyrics hidden">Hallelujah... Sing His praise forevermore...</div>
+      </div>
+
+      <!-- More songs can be copied and updated similarly -->
+    </div>
+  </main>
+
+  <!-- Footer Player -->
+  <footer class="footer-player">
+    <p>Now Playing: <span id="current-song">None</span></p>
+  </footer>
+
+  <script src="Script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings – Jesusify</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding: 2rem;
+      color: #2b2d42;
+    }
+
+    .settings-container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      color: #5e6472;
+      margin-bottom: 1rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #9c6644;
+    }
+
+    .save-btn {
+      background-color: #9c6644;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .save-btn:hover {
+      background-color: #7d4f34;
+    }
+
+    @media (max-width: 600px) {
+      .settings-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="settings-container">
+    <h2>Account Settings</h2>
+    <div class="section">
+      <div class="form-group">
+        <label for="username">Full Name</label>
+        <input type="text" id="username" value="John David" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" value="john@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="password">Change Password</label>
+        <input type="password" id="password" placeholder="Enter new password" />
+      </div>
+    </div>
+
+    <h2>Privacy Settings</h2>
+    <div class="section">
+      <div class="form-group">
+        <label for="profile-visibility">Profile Visibility</label>
+        <select id="profile-visibility">
+          <option value="public">Public</option>
+          <option value="private" selected>Private</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="activity-status">Show Activity Status</label>
+        <select id="activity-status">
+          <option value="yes">Yes</option>
+          <option value="no" selected>No</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="save-btn">Save Changes</button>
+  </div>
+
+</body>
+</html>
