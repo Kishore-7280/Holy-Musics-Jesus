@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jesusify Auth</title>
+  <script defer src="index.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 { text-align: center; color: #5e6472; }
+    form { display: flex; flex-direction: column; }
+    input {
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem;
+      background-color: #9c6644;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .toggle-password {
+      margin-top: -2rem;
+      margin-bottom: 1rem;
+      text-align: right;
+      font-size: 0.9rem;
+      color: #555;
+      cursor: pointer;
+    }
+    .message { margin-top: 1rem; text-align: center; font-size: 0.9rem; }
+    .link-btn { font-size: 0.9rem; margin-top: 1rem; text-align: center; color: #9c6644; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="form-title">Login</h2>
+    <form id="authForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required minlength="6" />
+      <div class="toggle-password" onclick="togglePassword()">Show Password</div>
+      <button type="submit" id="authBtn">Login</button>
+      <div class="message" id="msg"></div>
+    </form>
+    <div class="link-btn" onclick="switchMode('register')">Need an account? Register</div>
+    <div class="link-btn" onclick="switchMode('forgot')">Forgot password?</div>
+  </div>
+  <script>
+    let mode = 'login';
+    const title = document.getElementById('form-title');
+    const btn = document.getElementById('authBtn');
+    const msg = document.getElementById('msg');
+    const passwordInput = document.getElementById('password');
+
+    function togglePassword() {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+
+    function switchMode(newMode) {
+      mode = newMode;
+      msg.textContent = '';
+      const form = document.getElementById('authForm');
+      if (mode === 'register') {
+        title.textContent = 'Register';
+        btn.textContent = 'Register';
+        form.onsubmit = register;
+      } else if (mode === 'forgot') {
+        title.textContent = 'Forgot Password';
+        btn.textContent = 'Send Link';
+        passwordInput.style.display = 'none';
+        document.querySelector('.toggle-password').style.display = 'none';
+        form.onsubmit = forgotPassword;
+      } else {
+        title.textContent = 'Login';
+        btn.textContent = 'Login';
+        passwordInput.style.display = 'block';
+        document.querySelector('.toggle-password').style.display = 'block';
+        form.onsubmit = login;
+      }
+    }
+
+    async function login(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = passwordInput.value;
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      msg.textContent = data.error || 'Logged in';
+    }
+
+    async function register(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = passwordInput.value;
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      msg.textContent = data.error || 'Registered successfully';
+    }
+
+    async function forgotPassword(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const res = await fetch('/api/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      msg.textContent = data.message || data.error;
+    }
+  </script>
+</body>
+</html>
